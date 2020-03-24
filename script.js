@@ -10,37 +10,74 @@ var a = false;
 var s = false;
 var d = false;
 
+var interval = 200;
+
+var pX = [];
+var pY = [];
+
 drawFrame();
 
-function drawFrame() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+// pX = snake_x;
+// pY = snake_y;
 
+function drawFrame() {
+    // context.clearRect(snake_x, snake_y, 20, 20);
     context.beginPath();
 
+    
+    
     context.fillStyle = "#009000";
     context.fillRect(snake_x, snake_y, 20, 20);
-
     context.stroke();
 
     goMove();
 
-    setTimeout("drawFrame()", 200);
+    pX.push(snake_x);
+    pY.push(snake_y);
+
+    
+
+    setTimeout("drawFrame()", interval);
+}
+
+function clearXBOCT(){
+    context.clearRect(pX.shift(), pY.shift(), 20, 20);
 }
 
 window.onkeydown = function window_keyDown() {
-    // console.log(window.event.keyCode);
+    console.log(window.event.keyCode);
     if (window.event.keyCode == 87) { this.W_keyDown(); }
     if (window.event.keyCode == 65) { this.A_keyDown(); }
     if (window.event.keyCode == 83) { this.S_keyDown(); }
     if (window.event.keyCode == 68) { this.D_keyDown(); }
-    if (window.event.keyCode == 32) { drawFrame(); }
+
+    //space
+    if (window.event.keyCode == 32) { window.setInterval(clearXBOCT, interval); }
+
+    //ctrl
+    if (window.event.keyCode == 17) { 
+        pX.push(pX[pX.length - 1]);
+        pY.push(pY[pY.length - 1]);
+    }
 }
 
 function goMove() {
-    if (w) { snake_y -= snake_step; }
-    if (a) { snake_x -= snake_step; }
-    if (s) { snake_y += snake_step; }
-    if (d) { snake_x += snake_step; }
+    if (w) {
+        snake_y -= snake_step;
+        // context.clearRect(snake_x, snake_y+60, 20, 20);
+    }
+    if (a) {
+        snake_x -= snake_step;
+        // context.clearRect(snake_x+60, snake_y, 20, 20);
+    }
+    if (s) {
+        snake_y += snake_step;
+        // context.clearRect(snake_x, snake_y-60, 20, 20);
+    }
+    if (d) {
+        snake_x += snake_step;
+        // context.clearRect(snake_x-60, snake_y, 20, 20);
+    }
 }
 
 function W_keyDown() {
