@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+#section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#area {
+    border: 1px solid #000000;
+    background-color: #585858;
+}
+
