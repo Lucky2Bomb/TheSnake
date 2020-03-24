@@ -19,54 +19,63 @@ function drawFrame() {
 
     context.fillStyle = "#009000";
     context.fillRect(snake_x, snake_y, 20, 20);
-    
+
     context.stroke();
 
     goMove();
-    
+
     setTimeout("drawFrame()", 200);
 }
 
-window.onkeydown =  function window_keyDown() {
+window.onkeydown = function window_keyDown() {
     // console.log(window.event.keyCode);
-    if(window.event.keyCode == 87) {this.W_keyDown();}
-    if(window.event.keyCode == 65) {this.A_keyDown();}
-    if(window.event.keyCode == 83) {this.S_keyDown();}
-    if(window.event.keyCode == 68) {this.D_keyDown();}
-    
+    if (window.event.keyCode == 87) { this.W_keyDown(); }
+    if (window.event.keyCode == 65) { this.A_keyDown(); }
+    if (window.event.keyCode == 83) { this.S_keyDown(); }
+    if (window.event.keyCode == 68) { this.D_keyDown(); }
+    if (window.event.keyCode == 32) { drawFrame(); }
 }
 
 function goMove() {
-        if (w) { snake_y-=snake_step; }
-        if (a) { snake_x-=snake_step; }
-        if (s) { snake_y+=snake_step; }
-        if (d) { snake_x+=snake_step; }
+    if (w) { snake_y -= snake_step; }
+    if (a) { snake_x -= snake_step; }
+    if (s) { snake_y += snake_step; }
+    if (d) { snake_x += snake_step; }
 }
 
 function W_keyDown() {
-    w = true;
-    a = false;
-    s = false;
-    d = false;
+
+    if (!s) {
+        w = true;
+        a = false;
+        s = false;
+        d = false;
+    }
 }
 
 function A_keyDown() {
-    w = false;
-    a = true;
-    s = false;
-    d = false;
+    if (!d) {
+        w = false;
+        a = true;
+        s = false;
+        d = false;
+    }
 }
 
 function S_keyDown() {
-    w = false;
-    a = false;
-    s = true;
-    d = false;
+    if (!w) {
+        w = false;
+        a = false;
+        s = true;
+        d = false;
+    }
 }
 
 function D_keyDown() {
-    w = false;
-    a = false;
-    s = false;
-    d = true;
+    if (!a) {
+        w = false;
+        a = false;
+        s = false;
+        d = true;
+    }
 }
