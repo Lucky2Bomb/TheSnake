@@ -56,7 +56,7 @@ function checkSnakeCrush_keyDown() {
     //console.log(window.event.keyCode);
     if (window.event.keyCode == 87 || window.event.keyCode == 65 || 
         window.event.keyCode == 83 || window.event.keyCode == 68) { 
-        setTimeout(checkSnakeCrush, snakeStepInterval);
+        //setTimeout(checkSnakeCrush, snakeStepInterval);
         window.removeEventListener("keydown", checkSnakeCrush_keyDown);
      }
 }
@@ -140,7 +140,7 @@ function getRandomInt(min, max) {
 }
 
 function checkSnakeCrush() {
-    if (currentSnakeTailX.indexOf(snake_x) > 0 && currentSnakeTailY.indexOf(snake_y) > 0) {
+    if (currentSnakeTailX.indexOf(snake_x) != -1 && currentSnakeTailY.indexOf(snake_y) != -1) {
         if(currentSnakeTailX.indexOf(snake_x) == currentSnakeTailY.indexOf(snake_y)){
         console.log("snake crush!");
         setTimeout(checkSnakeCrush, snakeStepInterval);
